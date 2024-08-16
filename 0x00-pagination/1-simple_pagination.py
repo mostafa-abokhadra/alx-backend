@@ -29,10 +29,10 @@ class Server:
         assert type(page) == int and type(page_size) == int
         assert page > 0 and page_size > 0
         self.dataset()
-        if page * page_size > len(self.__dataset):
-            return []
         t = index_range(page, page_size)
-        return [self.__dataset[i] for i in range(t[0], t[1])]
+        if t[0] > len(self.__dataset):
+            return []
+        return self.__dataset[t[0]:t[1]]
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
