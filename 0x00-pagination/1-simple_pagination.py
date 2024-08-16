@@ -26,15 +26,15 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        # assert type(page) == int and type(page_size) == int
-        # assert page > 0 and page_size > 0
-        # self.dataset()
-        # t = index_range(page, page_size)
-        # if t[0] > len(self.__dataset):
-        #     return []
-        # if t[0] * t[1] > len(self.__dataset):
-        #     return self.__dataset[t[0]:]
-        # return self.__dataset[t[0]:t[1]]
+        assert type(page) == int and type(page_size) == int
+        assert page > 0 and page_size > 0
+        self.dataset()
+        t = index_range(page, page_size)
+        if t[0] > len(self.__dataset):
+            return []
+        if t[0] * t[1] > len(self.__dataset):
+            return self.__dataset[t[0]:]
+        return self.__dataset[t[0]:t[1]]
         # assert type(page) == int and type(page_size) == int
         # assert page > 0 and page_size > 0
         # start, end = index_range(page, page_size)
@@ -42,25 +42,25 @@ class Server:
         # if start > len(data):
         #     return []
         # return data[start:end]
-        assert type(page) is int and page > 0
-        assert type(page_size) is int and page_size > 0
+        # assert type(page) is int and page > 0
+        # assert type(page_size) is int and page_size > 0
 
-        indexes = index_range(page, page_size)
-        try:
-            data = self.dataset()
-            return data[indexes[0]: indexes[1]]
-        except IndexError:
-            return []
+        # indexes = index_range(page, page_size)
+        # try:
+        #     data = self.dataset()
+        #     return data[indexes[0]: indexes[1]]
+        # except IndexError:
+        #     return []
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """index range
     """
-    # if page == 1:
-    #     return (0, page_size)
-    # return ((page * page_size) - page_size, page * page_size)
-    index_tuple = page_size * (page - 1), page * page_size
-    return index_tuple
+    if page == 1:
+        return (0, page_size)
+    return ((page * page_size) - page_size, page * page_size)
+    # index_tuple = page_size * (page - 1), page * page_size
+    # return index_tuple
 
 
 child = Server()
