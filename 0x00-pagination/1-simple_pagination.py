@@ -26,15 +26,22 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        # assert type(page) == int and type(page_size) == int
+        # assert page > 0 and page_size > 0
+        # self.dataset()
+        # t = index_range(page, page_size)
+        # if t[0] > len(self.__dataset):
+        #     return []
+        # if t[0] * t[1] > len(self.__dataset):
+        #     return self.__dataset[t[0]:]
+        # return self.__dataset[t[0]:t[1]]
         assert type(page) == int and type(page_size) == int
         assert page > 0 and page_size > 0
-        self.dataset()
-        t = index_range(page, page_size)
-        if t[0] > len(self.__dataset):
+        start, end = index_range(page, page_size)
+        data = self.dataset()
+        if start > len(data):
             return []
-        if t[0] * t[1] > len(self.__dataset):
-            return self.__dataset[t[0]:]
-        return self.__dataset[t[0]:t[1]]
+        return data[start:end]
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
