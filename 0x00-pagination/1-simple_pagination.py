@@ -32,6 +32,8 @@ class Server:
         t = index_range(page, page_size)
         if t[0] > len(self.__dataset):
             return []
+        if t[0] * t[1] > len(self.__dataset):
+            return self.__dataset[t[0]:]
         return self.__dataset[t[0]:t[1]]
 
 
