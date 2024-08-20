@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ a moudle
 """
-from base_caching import BaseCaching
+BaseCaching = __import__('base_caching').BaseCaching
 
 
 class BasicCache(BaseCaching):
@@ -18,11 +18,11 @@ class BasicCache(BaseCaching):
         """ adding to the cache system
         """
         if key is None or item is None:
-            self.cache_data[key] = item
             return
+        self.cache_data[key] = item
 
     def get(self, key):
-        """
+        """ geting a cached data
         """
         if key is None or self.cache_data.get(key) is None:
             return
