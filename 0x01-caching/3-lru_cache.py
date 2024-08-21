@@ -39,4 +39,8 @@ class LRUCache(BaseCaching):
         """
         if key is None or self.cache_data.get(key) is None:
             return None
+        idx = LRUCache.lru.index(key)
+        key = LRUCache.lru[idx]
+        del LRUCache.lru[idx]
+        LRUCache.lru.insert(0, key)
         return self.cache_data[key]
