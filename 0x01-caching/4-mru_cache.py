@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""least recently used
+"""most recently used
 """
 BaseCaching = __import__('base_caching').BaseCaching
 
