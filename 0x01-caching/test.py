@@ -1,3 +1,7 @@
 #!/usr/bin/env python3
-diction = {"name": "mostafa"}
-print(diction.get("age"))
+listy = []
+listy.append(None)
+if listy:
+    print(listy)
+
+
