@@ -12,7 +12,7 @@ class BasicCache(BaseCaching):
     def __inti__(self):
         """constructor
         """
-        super()
+        super().__init__()
 
     def put(self, key, item):
         """ adding to the cache system
