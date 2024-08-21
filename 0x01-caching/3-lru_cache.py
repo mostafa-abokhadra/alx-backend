@@ -5,7 +5,28 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LRUCache(BaseCaching):
-    """lru class
+    """ the logic is as follow:
+        - what ever operation (put, get, updata)
+        happens on self.cache_data we will log
+        these into the lru list
+        - last item in lru will always be the
+        least used so will be removed whenever
+        cache reach it's maximum limits
+        - if size of cache_data before and after
+        put operation is the same this indicates
+        an update operation not adding new value
+        which has it's own logic
+        - if size of cache_data after put operatoin
+        is bigger than before this indicates
+        adding new value which has it's own logic
+        - whenever we "get", or "put" any item we
+        will add this item to the front of the
+        lru list meaning that this item is
+        recently used so not to be considered when
+        removal time comes, this will also make the last item
+        of lru list always be the least recently used
+        which we can pop from the list when time comes and
+        from the cache_data
     """
     lru = []
 
