@@ -6,6 +6,28 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 class LFUCache(BaseCaching):
     """ the logic is as follow:
+        - when we first put or add into cahce_data, we will put
+        the same element key in the lfu_lru dictionary with the 
+        value of 1 (indicating only one operation have been
+        done on that key which is the addition operation till now)
+        -whenever that key is used again either by
+        put function(updating it's value) or by get function
+        we will increment it's value by +1 and at the same time
+        we will move it at the beginning of the dictionary indicating
+        the most recently used
+        - when we reach the limits, we will loop on the values of
+        lfu_lru dictionary and find the minimum value which indicates
+        the least frequently used, then we will count how many times this
+        minumum number is repeated as another keys value, if it exists only
+        once then we will just remove this item, if it is repeated
+        more than one time as multiple keys value we will remove the item
+        according to the recency by looping on the dictionary from the end
+        and find the first occurance of the minimum value from the end which
+        indicates the least recently used
+        (lastkeys in the dictionary is the older keys)
+        -Note that when we tried to find the minimum value of dict.values()
+        we started from index 1, because index 0 is for the new item which 
+        is just added right now so it's counter gonna be 1, so exclude that
     """
     lfu_lru = {}
 
